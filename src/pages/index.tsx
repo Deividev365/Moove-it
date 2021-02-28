@@ -8,7 +8,7 @@ import {GetServerSideProps} from 'next';
 
 import styles from '../styles/Pages/Home.module.css';
 
-import Head from 'next/Head';
+import Head from 'next/head';
 import ChallengeBox from "../components/ChallengeBox";
 import { CountDownProvider } from "../contexts/CountDown.context";
 import { ChallengesProvider } from "../contexts/ChallengeContext";
