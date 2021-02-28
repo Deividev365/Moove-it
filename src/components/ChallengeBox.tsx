@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { ChallengeContext } from '../contexts/ChallengeContext';
+import { CountDownContext } from '../contexts/CountDown.context';
 import styles from '../styles/Components/ChallengeBox.module.css';
 
 
@@ -7,7 +8,19 @@ import styles from '../styles/Components/ChallengeBox.module.css';
 
 export default function ChallengeBox() {
     // consumir regra do negócio em todos os componentes da aplicação // 
-    const {activeChallenge, resetChallenge} = useContext(ChallengeContext);
+    const {activeChallenge, resetChallenge, completeChallenge}  = useContext(ChallengeContext);
+    const {  resetCountDown } = useContext(CountDownContext);
+
+    function handleChallengeCompleted() {
+        completeChallenge();
+        resetCountDown();
+    }
+
+    function handleChallengeFailed() {
+        resetChallenge();
+        resetCountDown();
+    }
+
 
 
     return(
@@ -28,14 +41,14 @@ export default function ChallengeBox() {
                         <button 
                             type="button"
                             className={styles.challengeFailedButton}
-                            onClick={resetChallenge}
+                            onClick={handleChallengeFailed}
                         >Falhei
                         </button>
 
                         <button 
                             type="button"
                             className={styles.challengeCompletedButton}
-
+                            onClick={handleChallengeCompleted}
                         >Completei
                         </button>
                     </footer>
